@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&User');
-const besinessDetailsController  = require('../Controllres/BusinessDetails.Controller');
+// const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&User');
+const businessController  = require('../Controllres/BusinessDetails.Controller');
 
 // router.use(authenticateToken);
 
-router.post('/updateDetails',authorizeRole('admin'),besinessDetailsController.updateDetails);
-router.get('/getDetails',authorizeRole('user'),besinessDetailsController.getDetails);//OK
+router.put('/updateDetails',businessController.updateDetails);
+router.get('/',businessController.getDetails);
 
 
 module.exports = router;

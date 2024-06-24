@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-
 const bcrypt = require('bcrypt');
 const Users = require('../models/Users');
 const TOKEN_SECRET = 'your_jwt_secret_key';

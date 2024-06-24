@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken,authorizeRole } = require('../midlleware/authAdmin&User');
 
-const orderContoller  = require('../Controllres/orders.Controller');
-router.use(authenticateToken);
+const orderController  = require('../Controllres/orders.Controller');
 
-router.post('/addOrder',authorizeRole('user'),orderContoller.addOrder);//
-router.put('/updateOrder/:phone',authorizeRole('Reminds'),orderContoller.updateOrder);
-router.delete('/deleteOrder/:phone',authorizeRole('Reminds'),orderContoller.deleteOrder);
-router.get('/getOrders',authorizeRole('admin'),orderContoller.getOrders);
+router.get('/',orderController.getOrders);
+// router.get('/:type',orderController.getOrdersByServiceType)
+router.post('/addOrder',orderController.addOrder);
+router.put('/updateOrder/:phone',orderController.updateOrder);
+router.delete('/deleteOrder/:phone',orderController.deleteOrder);
 
 
 module.exports = router;
