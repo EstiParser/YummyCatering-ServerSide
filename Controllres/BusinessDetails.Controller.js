@@ -1,22 +1,12 @@
-const businessService = require('../service/businessService');
+const businessDetailsService = require('../Service/BusinessDetails.Service');
 
-
-
-const getDetails = async (req, res) => {
-    try {
-        const details = await businessService.getDetails();
-        res.status(200).json(details);
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching details', error });
-    }
-};
-
-// Business Details
 const updateDetails = async (req, res) => {
     try {
-        const id = req.body.id;
         const update = req.body;
-        const updatedDetails = await businessService.updateDetails(id, update);
+        const email = req.body.email;
+        console.log(update);
+
+        const updatedDetails = await businessDetailsService.updateDetails(email, update);
         if (updatedDetails) {
             res.status(200).json({ message: 'The details have been successfully updated', updatedDetails });
         } else {
@@ -27,8 +17,15 @@ const updateDetails = async (req, res) => {
     }
 };
 
+const getDetails = async (req, res) => {
+    try {
+        const details = await businessDetailsService.getDetails();
+        res.status(200).json(details);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching details', error });
+    }
+};
 module.exports = {
-    getDetails,
-    updateDetails
-   
+    updateDetails,
+    getDetails
 };
