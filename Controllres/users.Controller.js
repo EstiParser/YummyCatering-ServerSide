@@ -1,8 +1,12 @@
-const BusinessDetails = require('../models/BusinessDetails');
+const usersService = require('../Service/users.service');
 
 const getUsers = async (req, res) => {
-    const users = await User.find();
-    res.status(200).json(users);
+    try {
+        const users = await usersService.getUsers();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving users', error });
+    }
 };
 
 module.exports = {
